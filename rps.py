@@ -2,52 +2,82 @@ import sys
 import random
 from enum import Enum
 
-def play_rps():
-    class RPS(Enum):
-        ROCK = 1
-        PAPER = 2
-        SCISSORS = 3
+def rps():
+    game_count = 0
+    player_wins = 0
+    python_wins = 0
 
-    player_choice = input("\nEnter ... \n1 for Rock, \n2 for Paper, or \n3 for Scissors:\n")
+    def play_rps():
+        nonlocal player_wins
+        nonlocal python_wins
 
-    if player_choice not in ["1", "2", "3"]:
-        print("You must enter 1, 2, or 3.")
-        return play_rps()
+        class RPS(Enum):
+            ROCK = 1
+            PAPER = 2
+            SCISSORS = 3
 
-    player = int(player_choice)
+        player_choice = input("\nEnter ... \n1 for Rock, \n2 for Paper, or \n3 for Scissors:\n")
 
-    computer_choice = random.choice("123")
+        if player_choice not in ["1", "2", "3"]:
+            print("You must enter 1, 2, or 3.")
+            return play_rps()
 
-    computer = int(computer_choice)
+        player = int(player_choice)
 
-    print("\nYou chose " + str(RPS(player)).replace('RPS.', "") + ".")
-    print("Computer chose " + str(RPS(computer)).replace('RPS.', "") + ".\n")
+        computer_choice = random.choice("123")
 
-    if player == 1 and computer == 3:
-        print("You Win 🥳")
-    elif player == 2 and computer == 1:
-        print("You Win 🥳")
-    elif player == 3 and computer == 2:
-        print("You Win 🥳")
-    elif player == computer:
-        print("Tie Game 🙌")
-    else: 
-        print("Python Wins 🐍")
+        computer = int(computer_choice)
 
-    print("\nPlay Again?")
+        print("\n🫵  chose " + str(RPS(player)).replace('RPS.', "") + ".")
+        print("🐍 chose " + str(RPS(computer)).replace('RPS.', "") + ".")
 
-    while True:
-        play_again = input("\nY for Yes or \nQ to Quit \n\n")
-        if play_again.lower() not in ["y", "q"]:
-            continue
+        def decide_winner(player, computer):
+            nonlocal player_wins
+            nonlocal python_wins
+
+            if player == 1 and computer == 3:
+                player_wins += 1
+                return "🥳🥳 You Win 🥳🥳"
+            elif player == 2 and computer == 1:
+                player_wins += 1
+                return "🥳🥳 You Win 🥳🥳"
+            elif player == 3 and computer == 2:
+                player_wins += 1
+                return "🥳🥳 You Win 🥳🥳"
+            elif player == computer:
+                return "🙌🙌 Game Tied 🙌🙌"
+            else: 
+                python_wins += 1
+                return "🐍🐍 Python Wins 🐍🐍"
+            
+        game_result = decide_winner(player, computer)
+
+        print(game_result)
+
+        nonlocal game_count
+        game_count += 1
+
+        print("\nGame count: " + str(game_count))
+        print("Player wins: " + str(player_wins))
+        print("Python Wins: " + str(python_wins))
+
+        print("\nPlay Again?")
+        while True:
+            play_again = input("Y for Yes or \nQ to Quit \n\n")
+            if play_again.lower() not in ["y", "q"]:
+                continue
+            else:
+                break
+
+        if play_again.lower() == "y":
+            return play_rps()
         else:
-            break
+            print("\n🎉🎉🎉")
+            print("Thank you for Playing")
+            sys.exit("Bye 👋\n")      
+    
+    return play_rps
 
-    if play_again.lower() == "y":
-        return play_rps()
-    else:
-        print("\n🎉🎉🎉")
-        print("Thank you for Playing")
-        sys.exit("Bye 👋\n")      
+play = rps()
 
-play_rps()
+play()
