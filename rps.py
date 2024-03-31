@@ -28,8 +28,8 @@ def rps():
 
         computer = int(computer_choice)
 
-        print("\n🫵  chose " + str(RPS(player)).replace('RPS.', "") + ".")
-        print("🐍 chose " + str(RPS(computer)).replace('RPS.', "") + ".")
+        print(f"\n🫵  chose {str(RPS(player)).replace('RPS.', "")}.")
+        print(f"🐍 chose {str(RPS(computer)).replace('RPS.', "")}.")
 
         def decide_winner(player, computer):
             nonlocal player_wins
@@ -57,9 +57,9 @@ def rps():
         nonlocal game_count
         game_count += 1
 
-        print("\nGame count: " + str(game_count))
-        print("Player wins: " + str(player_wins))
-        print("Python Wins: " + str(python_wins))
+        print(f"\nGame count: {str(game_count)}")
+        print(f"Player wins: {str(player_wins)}")
+        print(f"Python Wins: {str(python_wins)}")
 
         print("\nPlay Again?")
         while True:
@@ -78,6 +78,7 @@ def rps():
     
     return play_rps
 
-play = rps()
+rock_paper_scissors = rps()
 
-play()
+if __name__ == "__main__":
+    rock_paper_scissors()

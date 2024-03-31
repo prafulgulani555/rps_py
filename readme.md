@@ -13,4 +13,5 @@ This is a Rock, Paper, Scissor game made in python following [Dave gray's python
 - Refactored the game to use recursion to play the game again
 
 ## Version 4
-- Removed global variables using nested functions, game now shows total games played, wins and losses
+- Removed global variables by using closure, game now shows total games played and number of wins.
+- Refactored code to use fstrings and turned it into a module.
