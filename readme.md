@@ -15,3 +15,7 @@ This is a Rock, Paper, Scissor game made in python following [Dave gray's python
 ## Version 4
 - Removed global variables by using closure, game now shows total games played and number of wins.
 - Refactored code to use fstrings and turned it into a module.
+
+## Version 5 
+- game gives personalized experience by using the name of the person recevied through when parsing the command line argument
+- added another similar game called guess the number now both the game can be played through arcade menu
